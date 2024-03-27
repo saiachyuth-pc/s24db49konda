@@ -11,5 +11,9 @@ Instrument
 
 - `instrument_type` (string): 
 - `instrument_size` (string): 
-- `instrument_price` (number): 
+- `instrument_price` (number):
+
+Links: http://localhost:3000/instrument <br>
+http://localhost:3000/pick <br>
+
 
