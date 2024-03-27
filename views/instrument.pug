@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  
+  div.container-fluid
+    div.row
+      -
+        let results = [
+          { instrument_type: 'Piano', instrument_size: 'Large', instrument_price: 1500 },
+          { instrument_type: 'Guitar', instrument_size: 'Medium', instrument_price: 500 },
+          { instrument_type: 'Violin', instrument_size: 'Small', instrument_price: 300 }
+        ]
+        
+      each instrument,index in results
+        .col-sm-2(onclick=`buy(${index})`)
+          p Instrument Type: #{instrument.instrument_type}
+          p Size: #{instrument.instrument_size}
+          p Price: $#{instrument.instrument_price.toFixed(2)}
+
+  a(href="/") Back to index
+
+  script.
+    function buy(index) {
+        alert(`You purchased item ${index}`);
+    }

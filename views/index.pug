@@ -3,4 +3,14 @@ extends layout
 block content
   h1= title
   p Welcome to my web content page
-  button(type="button", class="btn btn-secondary") I am a button
+  button(type="button", class="btn btn-secondary", onclick="double()") I am button 
+    br
+  div#double
+  script.
+    let value = 0;
+    let power = 1;
+    function double() {
+      value += 1;
+      power *= 2;
+      document.getElementById('double').innerText = `Two to the power ${value} is ${power}.`;
+    }
