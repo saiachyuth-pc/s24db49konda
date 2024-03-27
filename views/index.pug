@@ -6,6 +6,8 @@ block content
   button(type="button", class="btn btn-secondary", onclick="double()") I am button 
     br
   div#double
+  
+   a(href='/instrument') View Search Results
   script.
     let value = 0;
     let power = 1;
@@ -14,4 +16,3 @@ block content
       power *= 2;
       document.getElementById('double').innerText = `Two to the power ${value} is ${power}.`;
     }
- a(href='/instrument') View Search Results
