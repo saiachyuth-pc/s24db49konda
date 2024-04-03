@@ -6,13 +6,9 @@ block content
   div.container-fluid
     div.row
       -
-        let results = [
-          { instrument_type: 'Piano', instrument_size: 'Large', instrument_price: 1500 },
-          { instrument_type: 'Guitar', instrument_size: 'Medium', instrument_price: 500 },
-          { instrument_type: 'Violin', instrument_size: 'Small', instrument_price: 300 }
-        ]
+        let instruments = results
         
-      each instrument,index in results
+      each instrument,index in instruments
         .col-sm-2(onclick=`buy(${index})`)
           p Instrument Type: #{instrument.instrument_type}
           p Size: #{instrument.instrument_size}

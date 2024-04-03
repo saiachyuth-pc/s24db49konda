@@ -3,12 +3,27 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded");});
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var instrumentRouter = require('./routes/instrument');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
+var instrument = require("./models/instrument");
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -27,6 +42,7 @@ app.use('/users', usersRouter);
 app.use('/instrument', instrumentRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
+app.use('/resource',resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,3 +61,33 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+// We can seed the collection if needed on
+
+async function recreateDB(){
+ // Delete everything
+ await instrument.deleteMany();
+
+ let instance1 = new instrument({instrument_type:"Piano", instrument_size:'Large',instrument_price:1500});
+ instance1.save().then(doc=>{ console.log("First object saved")} ).catch(err=>{
+ console.error(err)
+ });
+
+ let instance2 = new instrument({instrument_type:"Guitar", instrument_size:'Medium',instrument_price:500});
+ instance2.save().then(doc=>{ console.log("Second object saved")} ).catch(err=>{
+ console.error(err)
+ });
+
+ let instance3 = new instrument({instrument_type:"Violin", instrument_size:'Small',instrument_price:300});
+ instance3.save().then(doc=>{ console.log("Third object saved")} ).catch(err=>{
+ console.error(err)
+ });
+
+
+}
+let reseed = true;
+if (reseed) {recreateDB();}
+
+
+
+
