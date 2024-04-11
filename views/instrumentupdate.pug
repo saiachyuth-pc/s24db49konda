@@ -1,6 +1,9 @@
 extends layout
 block content
   h1= title
+  if (toShow == null)
+    h2 No instance to update 
+  else
     - let instrumentid = toShow._id
     - let instrument_type = toShow.instrument_type
     - let instrument_size = toShow.instrument_size

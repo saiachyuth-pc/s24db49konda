@@ -8,7 +8,18 @@ a {
 }
 
 .instrumentAttr {
-  background-color: aquamarine;
+  background-color: rgb(205, 186, 11);
   width: 120px;
+  }
+
+  .capAttr{
+    background-color: rgb(124, 197, 173);
+    width: 120px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:#8c425e;
+    color: #36e66b;
+    text-decoration: none;
+    cursor: pointer;
   }
   
