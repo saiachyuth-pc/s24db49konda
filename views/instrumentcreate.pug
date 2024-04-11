@@ -1,0 +1,34 @@
+extends layout
+ 
+block content
+  h1= type
+  form(id='instrumentForm', action="/resource/instrument", method="POST")
+    div.form-group
+      label.instrumentAttr(for='instrument_type') instrument type
+      input#instrument_type(type='text', name='instrument_type')
+    div.form-group
+      label.instrumentAttr(for='instrument_size') instrument size
+      input#instrument_size(type='text', name='instrument_size')
+    div.form-group
+      label.instrumentAttr(for='instrument_price') instrument price
+      input#instrument_price(type='number', name='instrument_price')
+    input.SUBMIT(type="submit")
+ 
+  script.
+    document.forms['instrumentForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error );
+      });
+    });
+ 

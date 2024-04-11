@@ -1,0 +1,20 @@
+extends layout
+block content
+    h1= title
+    - let instrument_id = toShow._id
+    - let instrument_type  = toShow.instrument_type
+    - let instrument_size = toShow.instrument_size
+    - let instrument_price = toShow.instrument_price
+    div
+        div.row
+            div(class='instrumentAttr mr-3') instrument ID is:
+            div #{instrument_id}
+        div.row
+            div(class='instrumentAttr mr-3') instrument_type  is:
+            div #{instrument_type }
+        div.row
+            div(class='instrumentAttr mr-3') instrument_size is:
+            div #{instrument_size}
+        div.row
+            div(class='instrumentAttr mr-3') instrument_price is:
+            div #{instrument_price}
