@@ -1,22 +1,36 @@
-extends layout
+//- extends layout
 
+//- block content
+//-   h1= title
+  
+//-   div.container-fluid
+//-     div.row
+//-       -
+//-         let instruments = results
+        
+//-       each instrument,index in instruments
+//-         .col-sm-2(onclick=`buy(${index})`)
+//-           p Instrument Type: #{instrument.instrument_type}
+//-           p Size: #{instrument.instrument_size}
+//-           p Price: $#{instrument.instrument_price.toFixed(2)}
+
+//-   a(href="/") Back to index
+
+//-   script.
+//-     function buy(index) {
+//-         alert(`You purchased item ${index}`);
+//-     }
+extends layout
+ 
 block content
   h1= title
-  
-  div.container-fluid
-    div.row
-      -
-        let instruments = results
-        
-      each instrument,index in instruments
-        .col-sm-2(onclick=`buy(${index})`)
-          p Instrument Type: #{instrument.instrument_type}
-          p Size: #{instrument.instrument_size}
-          p Price: $#{instrument.instrument_price.toFixed(2)}
-
-  a(href="/") Back to index
-
+  - let items = results;
+  div(class="container-fluid")
+  div(class="row m-1")
+    each item in items
+      - let destination = `dispatch(\"/instrument/update?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") Item: #{item.instrument_type}(#{item.instrument_size}) is #{item.instrument_price}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
-    function buy(index) {
-        alert(`You purchased item ${index}`);
-    }
+    function dispatch(path){
+      window.location.href=path}
