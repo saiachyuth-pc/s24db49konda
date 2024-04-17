@@ -1,18 +1,28 @@
-extends layout
+//- extends layout
 
-block content
-  h1= title
-  p Welcome to my web content page
-  button(type="button", class="btn btn-secondary", onclick="double()") I am button 
-    br
-  div#double
+//- block content
+//-   h1= title
+//-   p Welcome to my web content page
+//-   button(type="button", class="btn btn-secondary", onclick="double()") I am button 
+//-     br
+//-   div#double
   
-   a(href='/instrument') View Search Results
-  script.
-    let value = 0;
-    let power = 1;
-    function double() {
-      value += 1;
-      power *= 2;
-      document.getElementById('double').innerText = `Two to the power ${value} is ${power}.`;
-    }
+//-    a(href='/instrument') View Search Results
+//-   script.
+//-     let value = 0;
+//-     let power = 1;
+//-     function double() {
+//-       value += 1;
+//-       power *= 2;
+//-       document.getElementById('double').innerText = `Two to the power ${value} is ${power}.`;
+//-     }
+
+if user
+  p You are currently logged in as #{user.username}
+  a(href="/instrument") Take me to instruments
+  br
+  a(href="/logout") Logout
+else
+  a(href="/login") Login
+  <br>
+  a(href="/register") Register
